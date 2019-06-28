@@ -65,6 +65,7 @@ versions | number | 需要保留的版本数
 
 ## UploadStatus
 当`silent`不为`true`时会在控制台打印下列统计信息：
+
 名称 | 描述
 -- | --
 remote | 存储空间中现有的文件列表
