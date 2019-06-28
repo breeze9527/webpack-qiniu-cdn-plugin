@@ -53,7 +53,7 @@ dry | boolean | 不执行实际的上传删除操作，用于调试 | `false`
 `expire`选项包含两个成员
 
 字段名 | 类型 | 描述
--- | -- | -- | --
+-- | -- | --
 time | number | 过期时间(秒)
 versions | number | 需要保留的版本数
 
