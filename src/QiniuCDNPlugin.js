@@ -106,6 +106,7 @@ class QiniuCDNPlugin {
     };
     /** @type {Record<string, Buffer>} */
     this.fileSource = {};
+    this.startTime = null;
 
     this.handler = this.handler.bind(this);
   }
@@ -139,6 +140,7 @@ class QiniuCDNPlugin {
    */
   handler(compilation, callback) {
     this.compilation = compilation;
+    this.startTime = Date.now();
     this.initCDNStatus(initCDNError => {
       if (initCDNError) {
         callback(initCDNError);
@@ -160,6 +162,7 @@ class QiniuCDNPlugin {
           this.initCleanStatus(); // 初始化清理队列状态
         }
         this.run(runErr => {    // 执行上传，清理
+          this.endTime = Date.now();
           const options = this.options;
           if (options.silent !== true) {
             this.reportStatus();
@@ -477,6 +480,13 @@ class QiniuCDNPlugin {
       utils.drawTable(files.map(file => [file.filename, file.hash]), `${key}: ${files.length}`);
       console.log('\n');
     });
+    utils.drawTable(
+      [
+        ['startTime', 'endTime', 'duration'],
+        [this.startTime.toString(), this.endTime.toString(), (this.endTime - this.startTime).toString()]
+      ],
+      'timing'
+    )
   }
 }
 
