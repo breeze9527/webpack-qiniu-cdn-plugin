@@ -91,7 +91,6 @@ class VersionLog {
         break;
       }
     }
-    console.log(maxiumVersion, deadline, record.length, i);
     return i;
   }
 
