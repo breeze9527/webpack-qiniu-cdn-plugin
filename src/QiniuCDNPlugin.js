@@ -176,6 +176,7 @@ class QiniuCDNPlugin {
           if (options.prefetch) {
             this.dnsPrefetch();
           }
+          callback();
         });
       });
     });
